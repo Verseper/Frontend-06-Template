@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function NumberToString(num, base = 10) {
+      if (base !== 16 && base !== 10 && base !== 8 && base !== 2) {
+        throw new Error("错误的base");
+      }
+
+      if (num === 0) return '0';
+      if (base === 10) return String(num);
+      let prefix = {
+        2: "0b",
+        8: "0o",
+        16: "0x",
+      }[base];
+
+      let str = num.toString(base);
+      return prefix + str;
+    }
+
+    function StringToNumber(str) {
+      //十六进制
+      if (str.startsWith("0x")) {
+        return parseInt(str.substring(2), 16);
+      }
+      if (str.startsWith("0o")) {
+        return parseInt(str.substring(2), 8);
+      }
+      if (str.startsWith("0b")) {
+        return parseInt(str.substring(2), 2);
+      }
+      return parseInt(str, 10);
+    }
+    NumberToString(111)
+  </script>
+</body>
+
+</html>
